@@ -6,10 +6,12 @@ public class Email {
     private String firstName;
     private String lastName;
     private String psw;
+    private String email;
     private String department;
     private int defaultPasswordLength = 5;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 500;
     private String alternateEmail;
+    private String companySuffix = "company.com";
 
     //Constructor to receive the first name and last name
     public Email (String firstName, String lastName) {
@@ -24,6 +26,10 @@ public class Email {
         //Call a method that returns a random password
         this.psw = randomPassword(defaultPasswordLength);
         System.out.println("Your password: " + this.psw);
+
+        // Combine elements to generate emali
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + this.department + "." + companySuffix;
+        System.out.println("Your email is: " + email);
     }
     // Ask for the department
     private String setDepartment() {
@@ -51,9 +57,37 @@ public class Email {
         }
         return new String(password);
     }
+
     //Set the mailbox capacity
+    public void setMailboxCapacity(int capacity) {
+        this.mailboxCapacity = capacity;
+    }
 
     // Set the alternate email
+    public void setAlternateEmail(String altEmail) {
+        this.alternateEmail = altEmail;
+    }
 
     // Change the password
+    public void changePassword(String password) {
+        this.psw = password;
+    }
+
+    public int getMailboxCapacity() {
+        return mailboxCapacity;
+    }
+
+    public String getAlternateEmail() {
+        return alternateEmail;
+    }
+
+    public String getPsw() {
+        return psw;
+    }
+
+    public void showInfo() {
+        System.out.println( "DISPLAY NAME:" + firstName + " " + lastName +
+                "\nCOMPANY NAME: " + email +
+                "\nMAILBOX CAPACITY: " + mailboxCapacity + "mb");
+    }
 }
